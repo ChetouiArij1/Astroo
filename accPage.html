@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astromer</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=PT+Sans+Narrow");
+
+body {
+  font: 14px/1.5 "PT Sans Narrow", sans-serif;
+  background: #000000
+    url(http://neography.com/experiment/circles/solarsystem/bg.jpg) repeat;
+  color: #626668;
+}
+
+/* Solar System Styles */
+ul.solarsystem {
+  position: relative;
+  height: 640px;
+  list-style: none;
+  -webkit-transition: all 0.09s ease-in;
+  -moz-transition: all 0.09s ease-in;
+  -o-transition: all 0.09s ease-in;
+  transition: all 0.09s ease-in;
+  overflow: hidden;
+}
+ul.solarsystem li {
+  text-indent: -9999px;
+  display: block;
+  position: absolute;
+  border: 2px solid #394057;
+  /*    opacity: 0.7;*/
+}
+ul.solarsystem li span {
+  display: block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+ul.solarsystem li.active {
+  border-color: #aa4200;
+}
+ul.solarsystem li.active.sun,
+ul.solarsystem li.active span {
+  -webkit-transform: scale(1.3);
+  -moz-transform: scale(1.3);
+  -o-transform: scale(1.3);
+  transform: scale(1.3);
+}
+ul.solarsystem li.active.sun span,
+ul.solarsystem li.active.earth .moon {
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+ul.solarsystem li.sun {
+  width: 40px;
+  height: 40px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  background: #fc3;
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.22, rgb(204, 153, 0)),
+    color-stop(1, rgb(255, 219, 112))
+  );
+  background-image: -moz-linear-gradient(
+    center bottom,
+    rgb(204, 153, 0) 22%,
+    rgb(255, 219, 112) 100%
+  );
+  top: 302px;
+  left: 462px;
+  border: none;
+  -webkit-box-shadow: 0 0 50px #c90;
+  -moz-box-shadow: 0 0 50px #c90;
+  box-shadow: 0 0 50px #c90;
+  z-index: 100;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+ul.solarsystem li.sun span {
+  width: 60px;
+  height: 60px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+}
+ul.solarsystem li.mercury {
+  width: 100px;
+  height: 100px;
+  -webkit-border-radius: 52px;
+  -moz-border-radius: 52px;
+  border-radius: 52px;
+  top: 270px;
+  left: 430px;
+  z-index: 99;
+}
+ul.solarsystem li.mercury span {
+  background: #b6bac5;
+  top: 10px;
+  left: 10px;
+}
+ul.solarsystem li.venus {
+  width: 160px;
+  height: 160px;
+  -webkit-border-radius: 82px;
+  -moz-border-radius: 82px;
+  border-radius: 82px;
+  top: 240px;
+  left: 400px;
+  z-index: 98;
+}
+ul.solarsystem li.venus span {
+  background: #bf8639;
+  top: 118px;
+  left: 5px;
+}
+ul.solarsystem li.earth {
+  width: 220px;
+  height: 220px;
+  -webkit-border-radius: 112px;
+  -moz-border-radius: 112px;
+  border-radius: 112px;
+  top: 210px;
+  left: 370px;
+  z-index: 97;
+}
+ul.solarsystem li.earth span {
+  background: #06c;
+  top: 56px;
+  left: 5px;
+}
+ul.solarsystem li.earth span.moon {
+  width: 4px;
+  height: 4px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  background: #ccc;
+  top: 12px;
+  left: 12px;
+}
+ul.solarsystem li.mars {
+  width: 280px;
+  height: 280px;
+  -webkit-border-radius: 142px;
+  -moz-border-radius: 142px;
+  border-radius: 142px;
+  top: 180px;
+  left: 340px;
+  z-index: 96;
+}
+ul.solarsystem li.mars span {
+  background: #aa4200;
+  top: 0px;
+  left: 175px;
+}
+ul.solarsystem li.asteroids_meteorids {
+  top: 155px;
+  left: 315px;
+  z-index: 1;
+  background: url(http://neography.com/experiment/circles/solarsystem/asteroids_meteorids.png)
+    no-repeat 0 0;
+  width: 330px;
+  height: 330px;
+  -webkit-border-radius: 165px;
+  -moz-border-radius: 165px;
+  border-radius: 165px;
+  border: none;
+}
+ul.solarsystem li.jupiter {
+  width: 340px;
+  height: 340px;
+  -webkit-border-radius: 172px;
+  -moz-border-radius: 172px;
+  border-radius: 172px;
+  top: 150px;
+  left: 310px;
+  z-index: 95;
+}
+ul.solarsystem li.jupiter span {
+  background: #e0ae6f;
+  top: 67px;
+  left: 24px;
+}
+ul.solarsystem li.saturn {
+  width: 400px;
+  height: 400px;
+  -webkit-border-radius: 202px;
+  -moz-border-radius: 202px;
+  border-radius: 202px;
+  top: 120px;
+  left: 280px;
+  z-index: 94;
+}
+ul.solarsystem li.saturn span {
+  background: #dfd3a9;
+  top: 24px;
+  left: 300px;
+}
+ul.solarsystem li.saturn span.ring {
+  width: 12px;
+  height: 12px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background: none;
+  border: 2px solid #5a4e34;
+  left: -3px;
+  top: -3px;
+  -webkit-transform: skewY(50deg);
+  -moz-transform: skewY(50deg);
+  -o-transform: skewY(50deg);
+  transform: skewY(50deg);
+}
+ul.solarsystem li.uranus {
+  width: 460px;
+  height: 460px;
+  -webkit-border-radius: 232px;
+  -moz-border-radius: 232px;
+  border-radius: 232px;
+  top: 90px;
+  left: 250px;
+  z-index: 93;
+}
+ul.solarsystem li.uranus span {
+  background: #82b3d1;
+  top: 7px;
+  left: 300px;
+}
+ul.solarsystem li.neptune {
+  width: 520px;
+  height: 520px;
+  -webkit-border-radius: 262px;
+  -moz-border-radius: 262px;
+  border-radius: 262px;
+  top: 60px;
+  left: 220px;
+  z-index: 92;
+}
+ul.solarsystem li.neptune span {
+  background: #77c2ec;
+  top: 0px;
+  left: 200px;
+}
+ul.solarsystem li.pluto {
+  width: 580px;
+  height: 580px;
+  -webkit-border-radius: 292px;
+  -moz-border-radius: 292px;
+  border-radius: 292px;
+  top: 30px;
+  left: 190px;
+  z-index: 91;
+}
+ul.solarsystem li.pluto span {
+  background: #7c6a5c;
+  top: 79px;
+  left: 79px;
+}
+
+ul#descriptions {
+  position: absolute;
+  top: 150px;
+  right: 100px;
+  list-style: none;
+}
+ul#descriptions h2 {
+  cursor: pointer;
+  color: #386077;
+  -webkit-transition: all 0.15s ease-in;
+  -moz-transition: all 0.15s ease-in;
+  -o-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+  font-size: 20px;
+  position: relative;
+  z-index: 101;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  margin-bottom: -15px;
+}
+ul#descriptions h2:hover {
+  color: #aa4200;
+  -webkit-transform: scale(1.08);
+  -moz-transform: scale(1.08);
+  -o-transform: scale(1.08);
+  transform: scale(1.08);
+}
+ul#descriptions li p {
+  position: absolute;
+  left: -250px;
+  top: 0;
+  width: 200px;
+  display: inline;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 13px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  background: #0f132c;
+  padding: 30px;
+  color: #767892;
+  line-height: 1.7;
+  z-index: 100;
+  border: 1px solid #1c203c;
+}
+ul#descriptions h2:hover + p {
+  visibility: visible;
+  opacity: 0.9;
+  left: -280px;
+}
+
+/* CSS3 Animations */
+ul.solarsystem li {
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-name: orbit;
+
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -moz-animation-name: orbit;
+}
+ul.solarsystem li.earth span {
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-name: moon;
+
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -moz-animation-name: moon;
+}
+ul.solarsystem li.mercury {
+  -webkit-animation-duration: 5s;
+  -moz-animation-duration: 5s;
+}
+ul.solarsystem li.venus {
+  -webkit-animation-duration: 8s;
+  -moz-animation-duration: 8s;
+}
+ul.solarsystem li.earth {
+  -webkit-animation-duration: 12s;
+  -moz-animation-duration: 12s;
+}
+ul.solarsystem li.earth span {
+  -webkit-animation-duration: 2s;
+  -moz-animation-duration: 2s;
+}
+ul.solarsystem li.mars {
+  -webkit-animation-duration: 20s;
+  -moz-animation-duration: 20s;
+}
+ul.solarsystem li.asteroids_meteorids {
+  -webkit-animation-duration: 50s;
+  -moz-animation-duration: 50s;
+}
+ul.solarsystem li.jupiter {
+  -webkit-animation-duration: 30s;
+  -moz-animation-duration: 30s;
+}
+ul.solarsystem li.saturn {
+  -webkit-animation-duration: 60s;
+  -moz-animation-duration: 60s;
+}
+ul.solarsystem li.uranus {
+  -webkit-animation-duration: 70s;
+  -moz-animation-duration: 70s;
+}
+ul.solarsystem li.neptune {
+  -webkit-animation-duration: 100s;
+  -moz-animation-duration: 100s;
+}
+ul.solarsystem li.pluto {
+  -webkit-animation-duration: 120s;
+  -moz-animation-duration: 120s;
+}
+
+@-webkit-keyframes orbit {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes moon {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes orbit {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes moon {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+/*ul.solarsystem:hover li {-webkit-animation-play-state: paused;} */
+
+    </style>
+</head>
+<body>
+    <section class="clearfix">
+
+        <ul class="solarsystem">
+          <li class="sun"><a href="#sun"><span>soleil</span></a></li>
+          <li class="mercury"><a href="#mercury"><span>Mercure</span></a></li>
+          <li class="venus"><a href="#venus"><span>Vénus</span></a></li>
+          <li class="earth"><a href="#earth"><span>Terre<span class="moon"> &amp; Lune</span></span></a></li>
+          <li class="mars"><a href="#mars"><span>Mars</span></a></li>
+          <li class="asteroids_meteorids"><span>Astéroïdes &amp; Météorides</span></li>
+          <li class="jupiter"><a href="#jupiter"><span>Jupiter</span></a></li>
+          <li class="saturn"><a href="#saturn"><span>Saturne &amp; <span class="ring">Anneau</span></span></a></li>
+          <li class="uranus"><a href="#uranus"><span>Uranus</span></a></li>
+          <li class="neptune"><a href="#neptune"><span>Neptune</span></a></li>
+          <li class="pluto"><a href="#pluto"><span>Pluton</span></a></li>
+        </ul>
+        
+        <ul id="descriptions">
+            <li>
+            <h2 id="sun">Soleil</h2>
+            <p>Le Soleil est une étoile, une boule chaude de gaz incandescents au cœur de notre système solaire. Son influence s’étend bien au-delà des orbites lointaines de Neptune et de Pluton. Sans l’énergie et la chaleur intenses du Soleil, il n’y aurait pas de vie sur Terre. Et même si cela est spécial pour nous, il existe des milliards d’étoiles comme notre Soleil disséminées dans la Voie lactée.</p>
+            </li>
+            
+            <li>
+            <h2 id="mercury">Mercure</h2>
+            <p>Mercure, brûlée par le soleil, n'est que légèrement plus grande que la Lune terrestre. Comme la Lune, Mercure a très peu d’atmosphère pour arrêter les impacts et elle est couverte de cratères. Le côté diurne de Mercure est surchauffé par le Soleil, mais la nuit, les températures chutent de plusieurs centaines de degrés en dessous de zéro. De la glace peut même exister dans les cratères. L'orbite ovoïde de Mercure fait le tour du Soleil tous les 88 jours.</p>
+            </li>
+            
+            <li>
+            <h2 id="venus">Vénus</h2>
+            <p>Vénus est un monde sombre, caractérisé par une chaleur intense et une activité volcanique. De structure et de taille similaires à celles de la Terre, l'atmosphère épaisse et toxique de Vénus emprisonne la chaleur dans un « effet de serre » incontrôlable. Le monde brûlé a des températures suffisamment élevées pour faire fondre le plomb. Des aperçus sous les nuages ​​révèlent des volcans et des montagnes déformées. Vénus tourne lentement dans la direction opposée à celle de la plupart des planètes.</p>
+            </li>
+            
+            <li>
+            <h2 id="earth">Terre</h2>
+            <p>La Terre est une planète océanique. L’abondance d’eau – et de vie – de notre planète natale la rend unique dans notre système solaire. D'autres planètes, ainsi que quelques lunes, ont de la glace, des atmosphères, des saisons et même des conditions météorologiques, mais ce n'est que sur Terre que tout ce mélange complexe se réunit de manière à encourager la vie - et en grande quantité.</p>
+            </li>
+            
+            <li>
+            <h2 id="mars">Mars</h2>
+            <p>Bien que les détails de la surface de Mars soient difficiles à voir depuis la Terre, les observations au télescope montrent des caractéristiques changeantes selon les saisons et des taches blanches aux pôles. Pendant des décennies, les gens ont spéculé que les zones claires et sombres de Mars étaient des parcelles de végétation, que Mars pourrait être un endroit probable pour des formes de vie et que de l'eau pourrait exister dans les calottes polaires. Lorsque le vaisseau spatial Mariner 4 a survolé Mars en 1965, beaucoup ont été choqués de voir des photographies d'une surface sombre et cratérisée. Mars semblait être une planète morte. Des missions ultérieures ont cependant montré que Mars est un membre complexe du système solaire et recèle de nombreux mystères encore à résoudre.</p>
+            </li>
+            
+            <li>
+            <h2 id="jupiter">Jupiter</h2>
+            <p>Planète la plus massive de notre système solaire, avec quatre grandes lunes et de nombreuses lunes plus petites, Jupiter forme une sorte de système solaire miniature. Jupiter ressemble à une étoile dans sa composition. En fait, si elle avait été environ 80 fois plus massive, elle serait devenue une étoile plutôt qu’une planète.</p>
+            </li>
+            
+            <li>
+            <h2 id="saturn">Saturne</h2>
+            <p>Saturne était la plus éloignée des cinq planètes connues des anciens. Comme Jupiter, Saturne est composée principalement d’hydrogène et d’hélium. Son volume est 755 fois supérieur à celui de la Terre. Les vents dans la haute atmosphère atteignent 500 mètres (1 600 pieds) par seconde dans la région équatoriale. Ces vents ultra-rapides, combinés à la chaleur montant de l’intérieur de la planète, provoquent les bandes jaunes et dorées visibles dans l’atmosphère.</p>
+            </li>
+            
+            <li>
+            <h2 id="uranus">Uranus</h2>
+            <p>Première planète découverte à l'aide d'un télescope, Uranus a été découverte en 1781 par l'astronome William Herschel. La septième planète du Soleil est si éloignée qu’il lui faut 84 ans pour parcourir une orbite.</p>
+            </li>
+            
+            <li>
+            <h2 id="neptune">Neptune</h2>
+            <p>À près de 4,5 milliards de kilomètres (2,8 milliards de miles) du Soleil, Neptune orbite autour du Soleil une fois tous les 165 ans. Il est invisible à l’œil nu en raison de son extrême distance par rapport à la Terre. Il est intéressant de noter que l'orbite elliptique inhabituelle de la planète naine Pluton amène Pluton sur l'orbite de Neptune pendant une période de 20 ans toutes les 248 années terrestres.</p>
+            </li>
+            
+            <li>
+            <h2 id="pluto">Pluton</h2>
+            <p>Minuscule, froide et incroyablement lointaine, Pluton a été découverte en 1930 et longtemps considérée comme la neuvième planète. Mais après la découverte de mondes similaires et fascinants, encore plus éloignés, Pluton a été reclassée parmi les planètes naines. Cette nouvelle classe de mondes pourrait offrir certaines des meilleures preuves des origines de notre système solaire.</p>
+            </li>
+        </ul>
+        
+    </section>
+    
+</body>
+</html>
